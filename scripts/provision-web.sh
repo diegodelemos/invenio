@@ -147,7 +147,7 @@ setup_npm_and_css_js_filters () {
     . ~/.profile
     
     npm install -g npm
-    npm install -g node-sass@3.8.0 clean-css requirejs uglify-js
+    npm install -g node-sass@3.8.0 clean-css clean-css-cli requirejs uglify-js
     # sphinxdoc-install-npm-and-css-js-filters-end
 
 }
