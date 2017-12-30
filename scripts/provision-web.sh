@@ -135,8 +135,19 @@ provision_web_libpostgresql_centos7 () {
 setup_npm_and_css_js_filters () {
 
     # sphinxdoc-install-npm-and-css-js-filters-begin
-    $sudo su -c "npm install -g npm"
-    $sudo su -c "npm install -g node-sass@3.8.0 clean-css requirejs uglify-js"
+
+    mkdir "${HOME}/.npm-packages" || true
+    
+    echo prefix=${HOME}/.npm-packages >> ~/.npmrc
+    
+    echo 'export NPM_PACKAGES="${HOME}/.npm-packages"' >> ~/.profile
+    echo 'export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"' >> ~/.profile
+    echo 'PATH="$NPM_PACKAGES/bin:$PATH"' >> ~/.profile
+    
+    . ~/.profile
+    
+    npm install -g npm
+    npm install -g node-sass@3.8.0 clean-css clean-css-cli requirejs uglify-js
     # sphinxdoc-install-npm-and-css-js-filters-end
 
 }
